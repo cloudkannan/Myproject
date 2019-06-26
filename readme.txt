@@ -65,7 +65,7 @@ Note: Storing state file in s3 bucket.
 Execute the module for the below order
 
 $ foundation module 
-$ ecuritygroup module 
+$ securitygroup module 
 $ instance module 	  
 	  
 
