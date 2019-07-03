@@ -1,0 +1,250 @@
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+aws_vpc.vpc: Refreshing state... (ID: vpc-0d615e7a53af272a3)
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  + aws_eip.nat
+      id:                                 <computed>
+      allocation_id:                      <computed>
+      association_id:                     <computed>
+      domain:                             <computed>
+      instance:                           <computed>
+      network_interface:                  <computed>
+      private_dns:                        <computed>
+      private_ip:                         <computed>
+      public_dns:                         <computed>
+      public_ip:                          <computed>
+      public_ipv4_pool:                   <computed>
+      vpc:                                "true"
+
+  + aws_internet_gateway.igw
+      id:                                 <computed>
+      owner_id:                           <computed>
+      tags.%:                             "1"
+      tags.Name:                          "igw_devops"
+      vpc_id:                             "${aws_vpc.vpc.id}"
+
+  + aws_nat_gateway.nat
+      id:                                 <computed>
+      allocation_id:                      "${aws_eip.nat.id}"
+      network_interface_id:               <computed>
+      private_ip:                         <computed>
+      public_ip:                          <computed>
+      subnet_id:                          "${aws_subnet.public1.id}"
+
+  + aws_network_acl.private
+      id:                                 <computed>
+      egress.#:                           "1"
+      egress.1373417576.action:           "allow"
+      egress.1373417576.cidr_block:       "10.0.0.0/16"
+      egress.1373417576.from_port:        "0"
+      egress.1373417576.icmp_code:        ""
+      egress.1373417576.icmp_type:        ""
+      egress.1373417576.ipv6_cidr_block:  ""
+      egress.1373417576.protocol:         "-1"
+      egress.1373417576.rule_no:          "100"
+      egress.1373417576.to_port:          "0"
+      ingress.#:                          "1"
+      ingress.1373417576.action:          "allow"
+      ingress.1373417576.cidr_block:      "10.0.0.0/16"
+      ingress.1373417576.from_port:       "0"
+      ingress.1373417576.icmp_code:       ""
+      ingress.1373417576.icmp_type:       ""
+      ingress.1373417576.ipv6_cidr_block: ""
+      ingress.1373417576.protocol:        "-1"
+      ingress.1373417576.rule_no:         "100"
+      ingress.1373417576.to_port:         "0"
+      owner_id:                           <computed>
+      subnet_ids.#:                       <computed>
+      tags.%:                             "1"
+      tags.Name:                          "private_nacl_devops"
+      vpc_id:                             "${aws_vpc.vpc.id}"
+
+  + aws_network_acl.public
+      id:                                 <computed>
+      egress.#:                           "1"
+      egress.1401401844.action:           "allow"
+      egress.1401401844.cidr_block:       "0.0.0.0/0"
+      egress.1401401844.from_port:        "0"
+      egress.1401401844.icmp_code:        ""
+      egress.1401401844.icmp_type:        ""
+      egress.1401401844.ipv6_cidr_block:  ""
+      egress.1401401844.protocol:         "-1"
+      egress.1401401844.rule_no:          "100"
+      egress.1401401844.to_port:          "0"
+      ingress.#:                          "1"
+      ingress.1401401844.action:          "allow"
+      ingress.1401401844.cidr_block:      "0.0.0.0/0"
+      ingress.1401401844.from_port:       "0"
+      ingress.1401401844.icmp_code:       ""
+      ingress.1401401844.icmp_type:       ""
+      ingress.1401401844.ipv6_cidr_block: ""
+      ingress.1401401844.protocol:        "-1"
+      ingress.1401401844.rule_no:         "100"
+      ingress.1401401844.to_port:         "0"
+      owner_id:                           <computed>
+      subnet_ids.#:                       <computed>
+      tags.%:                             "1"
+      tags.Name:                          "public_nacl_devops"
+      vpc_id:                             "${aws_vpc.vpc.id}"
+
+  + aws_route.private-natgw-route
+      id:                                 <computed>
+      destination_cidr_block:             "0.0.0.0/0"
+      destination_prefix_list_id:         <computed>
+      egress_only_gateway_id:             <computed>
+      gateway_id:                         <computed>
+      instance_id:                        <computed>
+      instance_owner_id:                  <computed>
+      nat_gateway_id:                     "${aws_nat_gateway.nat.id}"
+      network_interface_id:               <computed>
+      origin:                             <computed>
+      route_table_id:                     "${aws_route_table.private.id}"
+      state:                              <computed>
+
+  + aws_route.public-igw-route
+      id:                                 <computed>
+      destination_cidr_block:             "0.0.0.0/0"
+      destination_prefix_list_id:         <computed>
+      egress_only_gateway_id:             <computed>
+      gateway_id:                         "${aws_internet_gateway.igw.id}"
+      instance_id:                        <computed>
+      instance_owner_id:                  <computed>
+      nat_gateway_id:                     <computed>
+      network_interface_id:               <computed>
+      origin:                             <computed>
+      route_table_id:                     "${aws_route_table.public.id}"
+      state:                              <computed>
+
+  + aws_route_table.private
+      id:                                 <computed>
+      owner_id:                           <computed>
+      propagating_vgws.#:                 <computed>
+      route.#:                            <computed>
+      tags.%:                             "1"
+      tags.Name:                          "private_route_devops-rt"
+      vpc_id:                             "${aws_vpc.vpc.id}"
+
+  + aws_route_table.public
+      id:                                 <computed>
+      owner_id:                           <computed>
+      propagating_vgws.#:                 <computed>
+      route.#:                            <computed>
+      tags.%:                             "1"
+      tags.Name:                          "public_route_devops-rt"
+      vpc_id:                             "${aws_vpc.vpc.id}"
+
+  + aws_route_table_association.appprivate1
+      id:                                 <computed>
+      route_table_id:                     "${aws_route_table.private.id}"
+      subnet_id:                          "${aws_subnet.applayer_private1.id}"
+
+  + aws_route_table_association.dbprivate1
+      id:                                 <computed>
+      route_table_id:                     "${aws_route_table.private.id}"
+      subnet_id:                          "${aws_subnet.dblayer_private1.id}"
+
+  + aws_route_table_association.public1
+      id:                                 <computed>
+      route_table_id:                     "${aws_route_table.public.id}"
+      subnet_id:                          "${aws_subnet.public1.id}"
+
+  + aws_route_table_association.webprivate1
+      id:                                 <computed>
+      route_table_id:                     "${aws_route_table.private.id}"
+      subnet_id:                          "${aws_subnet.weblayer_private1.id}"
+
+  + aws_subnet.applayer_private1
+      id:                                 <computed>
+      arn:                                <computed>
+      assign_ipv6_address_on_creation:    "false"
+      availability_zone:                  "ap-southeast-1a"
+      availability_zone_id:               <computed>
+      cidr_block:                         "10.0.3.0/24"
+      ipv6_cidr_block:                    <computed>
+      ipv6_cidr_block_association_id:     <computed>
+      map_public_ip_on_launch:            "false"
+      owner_id:                           <computed>
+      tags.%:                             "1"
+      tags.Name:                          "sub_appprivate_devops"
+      vpc_id:                             "${aws_vpc.vpc.id}"
+
+  + aws_subnet.dblayer_private1
+      id:                                 <computed>
+      arn:                                <computed>
+      assign_ipv6_address_on_creation:    "false"
+      availability_zone:                  "ap-southeast-1b"
+      availability_zone_id:               <computed>
+      cidr_block:                         "10.0.4.0/24"
+      ipv6_cidr_block:                    <computed>
+      ipv6_cidr_block_association_id:     <computed>
+      map_public_ip_on_launch:            "false"
+      owner_id:                           <computed>
+      tags.%:                             "1"
+      tags.Name:                          "sub_dbprivate_devops"
+      vpc_id:                             "${aws_vpc.vpc.id}"
+
+  + aws_subnet.public1
+      id:                                 <computed>
+      arn:                                <computed>
+      assign_ipv6_address_on_creation:    "false"
+      availability_zone:                  "ap-southeast-1a"
+      availability_zone_id:               <computed>
+      cidr_block:                         "10.0.0.0/24"
+      ipv6_cidr_block:                    <computed>
+      ipv6_cidr_block_association_id:     <computed>
+      map_public_ip_on_launch:            "true"
+      owner_id:                           <computed>
+      tags.%:                             "1"
+      tags.Name:                          "sub_public_devops"
+      vpc_id:                             "${aws_vpc.vpc.id}"
+
+  + aws_subnet.weblayer_private1
+      id:                                 <computed>
+      arn:                                <computed>
+      assign_ipv6_address_on_creation:    "false"
+      availability_zone:                  "ap-southeast-1b"
+      availability_zone_id:               <computed>
+      cidr_block:                         "10.0.2.0/24"
+      ipv6_cidr_block:                    <computed>
+      ipv6_cidr_block_association_id:     <computed>
+      map_public_ip_on_launch:            "false"
+      owner_id:                           <computed>
+      tags.%:                             "1"
+      tags.Name:                          "sub_webprivate_devops"
+      vpc_id:                             "${aws_vpc.vpc.id}"
+
+  + aws_vpc.vpc
+      id:                                 <computed>
+      arn:                                <computed>
+      assign_generated_ipv6_cidr_block:   "false"
+      cidr_block:                         "10.0.0.0/16"
+      default_network_acl_id:             <computed>
+      default_route_table_id:             <computed>
+      default_security_group_id:          <computed>
+      dhcp_options_id:                    <computed>
+      enable_classiclink:                 <computed>
+      enable_classiclink_dns_support:     <computed>
+      enable_dns_hostnames:               "true"
+      enable_dns_support:                 "true"
+      instance_tenancy:                   "default"
+      ipv6_association_id:                <computed>
+      ipv6_cidr_block:                    <computed>
+      main_route_table_id:                <computed>
+      owner_id:                           <computed>
+      tags.%:                             "1"
+      tags.Name:                          "vpc_devops"
+
+
+Plan: 18 to add, 0 to change, 0 to destroy.
+
+------------------------------------------------------------------------
